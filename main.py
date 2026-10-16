@@ -1,4 +1,5 @@
-# 打印当前运行环境的 Python 版本号
-import sys
+# 顶层运行入口：uv run python main.py <ingest|ask> ...
+from rag_agent.cli import main
 
-print("当前运行环境的 Python 版本号: ", sys.version)
+if __name__ == "__main__":
+    main()

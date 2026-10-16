@@ -7,11 +7,43 @@ authors = [
     { name = "yanxin", email = "18515570803@163com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "httpx>=0.28.1",
+    "langchain-openai>=1.7.2",
+    "langgraph>=1.2.15",
+    "llama-index-core>=0.14.25",
+    "llama-index-llms-openai>=0.8.3",
+    "llama-index-llms-openai-like>=0.8.1",
+    "pymilvus>=3.0.2",
+    "python-dotenv>=1.2.4",
+]
 
 [project.scripts]
-rag-agent-playground = "rag_agent_playground:main"
+rag-agent-playground = "rag_agent:main"
 
 [build-system]
 requires = ["uv_build>=0.13.1,<0.14.0"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "rag_agent"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "UP"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
