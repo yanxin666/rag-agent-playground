@@ -51,7 +51,9 @@ class Settings:
     def require_milvus(self) -> tuple[str, str]:
         """返回 (uri, token) 二元组；任一缺失时抛 RuntimeError。"""
         if not self.milvus_uri or not self.milvus_token:
-            raise RuntimeError("缺少 MILVUS_URI / MILVUS_TOKEN，请在项目根目录 .env 中配置")
+            raise RuntimeError(
+                "缺少 MILVUS_URI / MILVUS_TOKEN，请在项目根目录 .env 中配置"
+            )
         return self.milvus_uri, self.milvus_token
 
 
@@ -68,13 +70,19 @@ def load_settings(env_file: str | Path | None = None) -> Settings:
         ark_api_key=os.environ.get("ARK_API_KEY", ""),
         ark_base_url=os.environ.get("ARK_BASE_URL", ARK_BASE_URL_DEFAULT),
         ark_chat_model=os.environ.get("ARK_CHAT_MODEL", ARK_CHAT_MODEL_DEFAULT),
-        ark_embedding_model=os.environ.get("ARK_EMBEDDING_MODEL", ARK_EMBEDDING_MODEL_DEFAULT),
+        ark_embedding_model=os.environ.get(
+            "ARK_EMBEDDING_MODEL", ARK_EMBEDDING_MODEL_DEFAULT
+        ),
         embedding_dim=int(os.environ.get("EMBEDDING_DIM", str(EMBEDDING_DIM_DEFAULT))),
         milvus_uri=os.environ.get("MILVUS_URI", ""),
         milvus_token=os.environ.get("MILVUS_TOKEN", ""),
-        milvus_collection=os.environ.get("MILVUS_COLLECTION", MILVUS_COLLECTION_DEFAULT),
+        milvus_collection=os.environ.get(
+            "MILVUS_COLLECTION", MILVUS_COLLECTION_DEFAULT
+        ),
         chunk_size=int(os.environ.get("CHUNK_SIZE", str(CHUNK_SIZE_DEFAULT))),
         chunk_overlap=int(os.environ.get("CHUNK_OVERLAP", str(CHUNK_OVERLAP_DEFAULT))),
-        retrieval_top_k=int(os.environ.get("RETRIEVAL_TOP_K", str(RETRIEVAL_TOP_K_DEFAULT))),
+        retrieval_top_k=int(
+            os.environ.get("RETRIEVAL_TOP_K", str(RETRIEVAL_TOP_K_DEFAULT))
+        ),
         log_level=os.environ.get("LOG_LEVEL", LOG_LEVEL_DEFAULT),
     )
